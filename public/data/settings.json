@@ -94,6 +94,15 @@
       },
       "fontColor": "#424242"
     },
+    "games": {
+      "title": "Games",
+      "metaDescription": "games",
+      "description": "Let's play a game",
+      "background": {
+        "color": "#FFF"
+      },
+      "fontColor": "#424242"
+    },
     "team": {
       "title": "Team",
       "metaDescription": "Get more info about organizers",
