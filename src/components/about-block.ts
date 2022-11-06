@@ -18,7 +18,7 @@ export class AboutBlock extends ThemedElement {
           padding-top: 64px;
           display: grid;
           grid-gap: 32px;
-          grid-template-columns: 1fr;
+          grid-template-columns: repeat(2, 1fr);
         }
 
         .statistics-block {
@@ -68,22 +68,17 @@ export class AboutBlock extends ThemedElement {
         <div>
           <h1 class="container-title">${aboutBlock.title}</h1>
           <p>${aboutBlock.callToAction.featuredSessions.description}</p>
-          <a
-            href="${aboutBlock.callToAction.featuredSessions.link}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+
+          <p>${aboutBlock.callToAction.howItWas.description}</p>
+          <a href="${aboutBlock.callToAction.howItWas.link}" 
+              tabindex="-1" 
+              target="_blank 
+              rel="noopener noreferrer">
             <paper-button class="animated icon-right">
-              <span class="cta-label">${aboutBlock.callToAction.featuredSessions.label}</span>
+              <span>${aboutBlock.callToAction.howItWas.label}</span>
               <iron-icon icon="hoverboard:arrow-right-circle"></iron-icon>
             </paper-button>
           </a>
-
-          <p>${aboutBlock.callToAction.howItWas.description}</p>
-          <paper-button class="animated icon-right" @click="${this.playVideo}">
-            <span>${aboutBlock.callToAction.howItWas.label}</span>
-            <iron-icon icon="hoverboard:arrow-right-circle"></iron-icon>
-          </paper-button>
         </div>
 
         <div class="statistics-block">
@@ -109,13 +104,6 @@ export class AboutBlock extends ThemedElement {
         </div>
       </div>
     `;
-  }
-
-  private playVideo() {
-    openVideoDialog({
-      title: aboutBlock.callToAction.howItWas.label,
-      youtubeId: aboutBlock.callToAction.howItWas.youtubeId,
-    });
   }
 }
 

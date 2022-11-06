@@ -194,6 +194,7 @@ export class SpeakersBlock extends ReduxMixin(PolymerElement) {
 
               <lazy-image
                 class="company-logo"
+                hidden="[[!speaker.company]]"
                 src="[[speaker.companyLogoUrl]]"
                 alt="[[speaker.company]]"
               ></lazy-image>

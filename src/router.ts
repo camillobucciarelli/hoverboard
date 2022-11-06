@@ -46,7 +46,7 @@ const ROUTES: Route[] = [
       await import('./pages/home-page.js');
     },
   },
-  {
+  /*{
     path: '/blog',
     children: [
       {
@@ -65,7 +65,7 @@ const ROUTES: Route[] = [
         },
       },
     ],
-  },
+  },*/
   {
     path: '/schedule',
     component: 'schedule-page',
@@ -124,7 +124,7 @@ const ROUTES: Route[] = [
       },
     ],
   },
-  {
+  /*{
     path: '/previous-speakers',
     children: [
       {
@@ -142,12 +142,19 @@ const ROUTES: Route[] = [
         },
       },
     ],
-  },
+  },*/
   {
     path: '/team',
     component: 'team-page',
     action: async () => {
       await import('./pages/team-page.js');
+    },
+  },
+  {
+    path: '/location',
+    component: 'location-page',
+    action: async () => {
+      await import('./pages/location-page.js');
     },
   },
   {

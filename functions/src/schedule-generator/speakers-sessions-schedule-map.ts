@@ -84,12 +84,16 @@ export function sessionsSpeakersScheduleMap(sessionsRaw, speakersRaw, scheduleRa
 
         const displayStart = timeslotsIndex + (timeslot.sessions[sessionIndex].extend || 0) + 1;
         const displayEnd =
-          sessionsLen !== 1
+          parseInt(sessionsLen !== 1
             ? sessionIndex + 2
             : Object.keys(extensions).length
             ? Object.keys(extensions)[0]
-            : tracksNumber + 1;
-        const start = `${timeslotsIndex + 1} / ${sessionIndex + 1}`;
+            : tracksNumber + 1)
+            + parseInt(timeslot.sessions[sessionIndex].span || 1) - 1;
+        const previousSpan = (sessionIndex > 0 
+            ? (timeslot.sessions[sessionIndex-1].span || 1)
+            : 1) - 1;
+        const start = `${timeslotsIndex + 1} / ${sessionIndex + 1 + previousSpan}`;
         const end = `${displayStart} / ${displayEnd}`;
 
         if (timeslot.sessions[sessionIndex].extend) {

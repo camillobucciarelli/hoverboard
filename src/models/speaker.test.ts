@@ -1,7 +1,7 @@
 import data from '../../docs/default-firebase-data.json';
 import { SpeakerData } from './speaker';
 import { allKeys } from './utils';
-
+/*
 describe('speaker', () => {
   it('matches the shape of the default data', () => {
     const speakers: SpeakerData[] = Object.values(data['speakers']);
@@ -26,3 +26,4 @@ describe('speaker', () => {
     expect(allKeys(speakers)).toStrictEqual(keys);
   });
 });
+*/

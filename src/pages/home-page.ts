@@ -13,7 +13,7 @@ import '../elements/gallery-block';
 import '../elements/latest-posts-block';
 import '../elements/map-block';
 import '../elements/partners-block';
-import '../elements/speakers-block';
+//import '../elements/speakers-block';
 import '../elements/subscribe-block';
 import '../elements/tickets-block';
 import { firebaseApp } from '../firebase';
@@ -250,13 +250,13 @@ export class HomePage extends ReduxMixin(PolymerElement) {
         <fork-me-block></fork-me-block>
       </template>
       <about-block></about-block>
-      <speakers-block></speakers-block>
+      <!--<speakers-block></speakers-block>-->
       <subscribe-block></subscribe-block>
       <tickets-block id="tickets-block"></tickets-block>
       <gallery-block></gallery-block>
       <about-organizer-block></about-organizer-block>
-      <featured-videos></featured-videos>
-      <latest-posts-block></latest-posts-block>
+      <!--<featured-videos></featured-videos>-->
+      <!--<latest-posts-block></latest-posts-block>-->
       <map-block></map-block>
       <partners-block></partners-block>
       <footer-block></footer-block>
@@ -276,13 +276,6 @@ export class HomePage extends ReduxMixin(PolymerElement) {
 
   @property({ type: Boolean })
   private showForkMeBlock: boolean = false;
-
-  private playVideo() {
-    openVideoDialog({
-      title: this.aboutBlock.callToAction.howItWas.label,
-      youtubeId: this.aboutBlock.callToAction.howItWas.youtubeId,
-    });
-  }
 
   private scrollToTickets() {
     const element = this.$['tickets-block'];

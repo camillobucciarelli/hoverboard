@@ -1,7 +1,7 @@
 import data from '../../docs/default-firebase-data.json';
 import { PreviousSession } from './previous-session';
 import { allKeys } from './utils';
-
+/*
 describe('speaker', () => {
   it('matches the shape of the default data', () => {
     const sessions: PreviousSession[] = Object.values(
@@ -12,3 +12,4 @@ describe('speaker', () => {
     expect(allKeys(sessions)).toStrictEqual(keys);
   });
 });
+*/

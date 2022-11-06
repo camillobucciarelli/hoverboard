@@ -226,6 +226,7 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
 
             <lazy-image
               class="company-logo"
+              hidden="[[!speaker.company]]"
               src="[[speaker.companyLogoUrl]]"
               alt="[[speaker.company]]"
             ></lazy-image>
@@ -252,8 +253,6 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
           </a>
         </template>
       </div>
-
-      <previous-speakers-block></previous-speakers-block>
 
       <footer-block></footer-block>
     `;
@@ -286,7 +285,7 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
     this.speakers = state.speakers;
     this.filterGroups = selectFilterGroups(state, [FilterGroupKey.tags]);
     this.selectedFilters = selectFilters(state);
-    this.speakersToRender = selectFilteredSpeakers(state);
+    this.speakersToRender = selectFilteredSpeakers(state).sort(() => Math.random() - 0.5);
   }
 
   @computed('speakers')

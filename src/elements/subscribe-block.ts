@@ -59,14 +59,18 @@ export class SubscribeBlock extends ReduxMixin(PolymerElement) {
       <div class="container" layout vertical center$="[[viewport.isTabletPlus]]">
         <div class="description">[[subscribeBlock.callToAction.description]]</div>
         <div class="cta-button">
-          <paper-button
-            class="animated icon-right"
-            disabled$="[[subscribed.data]]"
-            on-click="subscribe"
-          >
-            <span class="cta-label">[[ctaLabel]]</span>
-            <iron-icon icon$="hoverboard:[[ctaIcon]]"></iron-icon>
-          </paper-button>
+          <a href="[[subscribeBlock.callToAction.link]]" 
+              tabindex="-1" 
+              target="_blank 
+              rel="noopener noreferrer">
+            <paper-button
+              class="animated icon-right"
+              disabled$="[[subscribed.data]]">
+
+              <span class="cta-label">[[ctaLabel]]</span>
+              <iron-icon icon$="hoverboard:[[ctaIcon]]"></iron-icon>
+            </paper-button>
+          </a>
         </div>
       </div>
     `;

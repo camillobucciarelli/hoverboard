@@ -28,8 +28,8 @@ export class FooterNav extends PolymerElement {
         }
 
         .footer-logo {
-          --lazy-image-width: 120px;
-          --lazy-image-height: 24px;
+          --lazy-image-width: 150px;
+          --lazy-image-height: 50px;
           --lazy-image-fit: contain;
           width: var(--lazy-image-width);
           height: var(--lazy-image-height);
@@ -71,7 +71,7 @@ export class FooterNav extends PolymerElement {
         <a href="[[organizer.url]]" target="_blank" rel="noopener noreferrer">
           <lazy-image
             class="footer-logo"
-            src="../../images/organizer-logo.svg"
+            src="../../images/logo.png"
             alt="[[organizer.name]]"
           ></lazy-image>
         </a>
