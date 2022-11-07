@@ -6,6 +6,7 @@ import { featuredSessionsReducer } from './featured-sessions/reducers';
 import feedback from './feedback';
 import { filtersReducer } from './filters/reducers';
 import { galleryReducer } from './gallery/reducers';
+import { playersReducer } from './games/reducers';
 import { membersReducer } from './members/reducers';
 import notificationPermission from './notification-permission';
 import { notificationsSubscribersReducer } from './notifications-subscribers/reducers';
@@ -39,6 +40,7 @@ export const store = configureStore({
     feedback,
     filters: filtersReducer,
     gallery: galleryReducer,
+    players: playersReducer,
     members: membersReducer,
     notificationPermission,
     notificationsSubscribers: notificationsSubscribersReducer,
