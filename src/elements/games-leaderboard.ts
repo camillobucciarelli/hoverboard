@@ -72,17 +72,7 @@ export class GamesLeaderboard extends ReduxMixin(PolymerElement) {
   @property({ type: Array })
   leaderboard: Player[] = [];
 
-  override connectedCallback() {
-    super.connectedCallback();
-
-    if (this.players instanceof Initialized) {
-      store.dispatch(fetchPlayers);
-    }
-  }
-
   override stateChanged(state: RootState) {
-    super.stateChanged(state);
-    console.log(state);
     this.players = state.players;
     this.leaderboard = selectLeaderboard(state);
   }

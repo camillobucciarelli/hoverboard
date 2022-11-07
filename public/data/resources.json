@@ -318,5 +318,9 @@
   },
   "addToHomeScreen": {
     "cta": "Add to Home Screen"
+  },
+  "games": {
+    "activatedToast": "Wow! You will now participate to our games!",
+    "deactivatedToast": "You won't participate to our games anymore. See you soon!"
   }
 }
