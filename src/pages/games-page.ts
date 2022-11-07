@@ -6,6 +6,7 @@ import '@power-elements/lazy-image';
 import '../components/hero/simple-hero';
 import '../components/markdown/short-markdown';
 import '../elements/shared-styles';
+import '../elements/games-leaderboard';
 import { RootState } from '../store';
 import { ReduxMixin } from '../store/mixin';
 import { heroSettings } from '../utils/data';
@@ -137,7 +138,7 @@ export class GamesPage extends ReduxMixin(PolymerElement) {
       ></content-loader>
 
       <div class="container content">
-        
+        <games-leaderboard></games-leaderboard>
       </div>
 
       <footer-block></footer-block>

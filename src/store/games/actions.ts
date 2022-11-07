@@ -18,7 +18,7 @@ export const unsubscribe = () => {
   }
 };
 
-export const fetchPlayersPosts = async (dispatch: Dispatch<PlayersActions>) => {
+export const fetchPlayers = async (dispatch: Dispatch<PlayersActions>) => {
   if (subscription instanceof Initialized) {
     subscription = subscribeToCollection(
       'games',

@@ -40,6 +40,7 @@ export const theme = css`
     --primary-color-transparent: rgb(103 58 183 / 10%);
     --primary-color-light: rgb(103 58 183 / 80%);
     --primary-color-white: #ede7f6;
+    --th-background-color: #ffba00;
 
     /* Labels */
     --gde: #3d5afe;

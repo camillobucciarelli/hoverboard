@@ -18,6 +18,17 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    match /games/{userId} {
+      // Applies to single document read requests
+      allow get;
+
+      // Applies to queries and collection read requests
+      allow list;
+
+      // Allow writes only for the user's document
+      allow write: if request.auth.uid == userId;
+    }
+
     match /config/{config} {
       allow read, write: if false; // allow each section separately
     }
