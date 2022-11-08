@@ -44,22 +44,21 @@ export class GamesLeaderboard extends ReduxMixin(PolymerElement) {
           background-color: var(--disabled-text-color);
         }
       </style>
-      
+
       <h1>Leaderboard</h1>
 
       <table id="leaderboard">
         <tr>
           <th>Name</th>
-          <th>Score</th>
+          <th colspan="2">Score</th>
         </tr>
-        
+
         <template is="dom-repeat" items="[[leaderboard]]" as="player">
           <tr>
+            <td>[[player.name]]</td>
+            <td>[[player.score]]</td>
             <td>
-              [[player.name]]
-            </td>
-            <td>
-              [[player.score]]
+              <a href="/games/[[player.id]]">Edit</a>
             </td>
           </tr>
         </template>
@@ -74,7 +73,7 @@ export class GamesLeaderboard extends ReduxMixin(PolymerElement) {
 
   override stateChanged(state: RootState) {
     this.players = state.players;
-    
+
     if (this.players instanceof Initialized) {
       store.dispatch(fetchPlayers);
     }
