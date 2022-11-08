@@ -1,4 +1,4 @@
-import { Initialized } from '@abraham/remotedata';
+import { Initialized, Success } from '@abraham/remotedata';
 import { customElement, property } from '@polymer/decorators';
 import { html, PolymerElement } from '@polymer/polymer';
 import '@power-elements/lazy-image';
@@ -74,6 +74,13 @@ export class GamesLeaderboard extends ReduxMixin(PolymerElement) {
 
   override stateChanged(state: RootState) {
     this.players = state.players;
-    this.leaderboard = selectLeaderboard(state);
+    
+    if (this.players instanceof Initialized) {
+      store.dispatch(fetchPlayers);
+    }
+
+    if (this.players instanceof Success) {
+      this.leaderboard = selectLeaderboard(state);
+    }
   }
 }

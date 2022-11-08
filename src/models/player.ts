@@ -3,4 +3,6 @@ export interface Player {
   name?: string;
   score?: number;
   email?: string;
+  instagram?: string;
+  twitter?: string;
 }
