@@ -18,6 +18,7 @@ import { close } from './close';
 import { coffeeBreak } from './coffee-break';
 import { directions } from './directions';
 import { document } from './document';
+import { edit } from './edit';
 import { facebook } from './facebook';
 import { filterList } from './filter-list';
 import { gde } from './gde';
@@ -40,6 +41,7 @@ import { people } from './people';
 import { play } from './play';
 import { presentation } from './presentation';
 import { registration } from './registration';
+import { save } from './save';
 import { ticket } from './ticket';
 import { tracks } from './tracks';
 import { twitter } from './twitter';
@@ -73,6 +75,7 @@ const template = html`
         ${coffeeBreak}
         ${directions}
         ${document}
+        ${edit}
         ${facebook}
         ${filterList}
         ${gde}
@@ -95,6 +98,7 @@ const template = html`
         ${play}
         ${presentation}
         ${registration}
+        ${save}
         ${ticket}
         ${tracks}
         ${twitter}

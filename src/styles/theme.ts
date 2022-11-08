@@ -15,6 +15,7 @@ export const theme = css`
     --divider-color: #ededed;
     --footer-background-color: #f5f5f5;
     --footer-text-color: #616161;
+    --instagram-color: rgb(255 48 64);
     --twitter-color: #4099ff;
     --facebook-color: #3b5998;
     --border-light-color: #e2e2e2;
