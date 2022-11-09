@@ -19,12 +19,12 @@ export const unsubscribe = () => {
 
 export const fetchGameHistory =
   (userId: string) => async (dispatch: Dispatch<GameHistoryActions>) => {
-    if (subscription instanceof Initialized) {
-      subscription = subscribeToCollection(
-        `games/${userId}/history`,
-        () => dispatch({ type: FETCH_GAME_HISTORY }),
-        (payload: GameHistory[]) => dispatch({ type: FETCH_GAME_HISTORY_SUCCESS, payload }),
-        (payload: Error) => dispatch({ type: FETCH_GAME_HISTORY_FAILURE, payload })
-      );
-    }
+    subscription = subscribeToCollection(
+      `games/${userId}/history`,
+      () => dispatch({ type: FETCH_GAME_HISTORY }),
+      (payload: GameHistory[]) => {
+        return dispatch({ type: FETCH_GAME_HISTORY_SUCCESS, payload });
+      },
+      (payload: Error) => dispatch({ type: FETCH_GAME_HISTORY_FAILURE, payload })
+    );
   };

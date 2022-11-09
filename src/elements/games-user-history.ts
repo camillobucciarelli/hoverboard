@@ -1,15 +1,26 @@
-import { customElement } from '@polymer/decorators';
+import { Failure } from '@abraham/remotedata';
+import { customElement, observe, property } from '@polymer/decorators';
 import '@polymer/iron-icon/';
 import { html, PolymerElement } from '@polymer/polymer';
 import '@power-elements/lazy-image';
 
 import '../components/markdown/short-markdown';
 import '../components/text-truncate';
+import { router } from '../router';
+import { RootState, store } from '../store';
+import { fetchGameHistory, unsubscribe } from '../store/game-history/actions';
+import { GameHistoryState } from '../store/game-history/state';
 import { ReduxMixin } from '../store/mixin';
 import './shared-styles';
 
 @customElement('games-user-history')
 export class GamesUserHistory extends ReduxMixin(PolymerElement) {
+  @property({ type: String })
+  userid: string | undefined;
+
+  @property({ type: String })
+  gameHistory: GameHistoryState | undefined;
+
   static get template() {
     return html`
       <style include="shared-styles flex flex-alignment positioning">
@@ -76,7 +87,7 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
       <div class="container content">
         <div class="user">
           <div class="user-details">
-            <h2 class="user-name">utente?</h2>
+            <h2 class="user-name">utente? [[userid]]</h2>
             <div class="user-description">---</div>
           </div>
           <div class="add-or-remove">
@@ -109,5 +120,29 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
         </div>
       </div>
     `;
+  }
+
+  override connectedCallback(): void {
+    super.connectedCallback();
+    if (this.userid) store.dispatch(fetchGameHistory(this.userid));
+  }
+
+  @observe('gameHistory')
+  gameHistoryChanged(gameHistory: GameHistoryState) {
+    if (gameHistory instanceof Failure) {
+      if ('permission-denied' === (gameHistory.error as any)?.code) {
+        router.render('/games');
+      }
+    }
+  }
+
+  override stateChanged(state: RootState) {
+    this.gameHistory = state.gamesHistory;
+  }
+
+  override disconnectedCallback(): void {
+    console.log('disconnectedCallback');
+    unsubscribe();
+    super.disconnectedCallback();
   }
 }

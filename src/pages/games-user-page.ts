@@ -1,17 +1,13 @@
-import { Failure, Success } from '@abraham/remotedata';
 import { computed, customElement, observe, property } from '@polymer/decorators';
 import { html, PolymerElement } from '@polymer/polymer';
 import { RouterLocation } from '@vaadin/router';
 import '../components/hero/simple-hero';
-import '../elements/games-user-history';
 import '../components/markdown/remote-markdown';
 import '../elements/footer-block';
-import { router } from '../router';
-import { RootState, store } from '../store';
-import { fetchGameHistory } from '../store/game-history/actions';
+import '../elements/games-user-history';
 import { GameHistoryState } from '../store/game-history/state';
 import { ReduxMixin } from '../store/mixin';
-import { locationDetail, heroSettings } from '../utils/data';
+import { heroSettings, locationDetail } from '../utils/data';
 import { updateMetadata } from '../utils/metadata';
 
 @customElement('games-user-page')
@@ -26,7 +22,9 @@ export class GamesUserPage extends ReduxMixin(PolymerElement) {
       <simple-hero page="history">
         <div class="dialog-container header-content" layout horizontal center></div>
       </simple-hero>
-      <games-user-history></games-user-history>
+      <template is="dom-if" if="[[userId]]">
+        <games-user-history userid="[[userId]]"></games-user-history>
+      </template>
       <footer-block></footer-block>
     `;
   }
@@ -47,24 +45,15 @@ export class GamesUserPage extends ReduxMixin(PolymerElement) {
 
   onAfterEnter(location: RouterLocation) {
     this.userId = location.params?.['id']?.toString();
-    if (this.userId) store.dispatch(fetchGameHistory(this.userId));
   }
 
-  @computed('userId')
-  get user() {
-    return this.userId;
+  @observe('userId')
+  userIdChanged(userId: string) {
+    console.log('userIdChanged', userId);
   }
 
-  @observe('gameHistory')
-  gameHistoryChanged(gameHistory: GameHistoryState) {
-    if (gameHistory instanceof Failure) {
-      if ('permission-denied' === (gameHistory.error as any)?.code) {
-        // router.render('/games');
-      }
-    }
-  }
-
-  override stateChanged(state: RootState) {
-    this.gameHistory = state.gamesHistory;
-  }
+  // @computed('userId')
+  // get user() {
+  //   return this.userId;
+  // }
 }

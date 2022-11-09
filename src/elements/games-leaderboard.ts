@@ -5,7 +5,6 @@ import '@power-elements/lazy-image';
 import '../components/markdown/short-markdown';
 import '../components/text-truncate';
 import { Player } from '../models/player';
-import { router } from '../router';
 import { RootState, store } from '../store';
 import { fetchPlayers } from '../store/games/actions';
 import { selectLeaderboard } from '../store/games/selectors';
