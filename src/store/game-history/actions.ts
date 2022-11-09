@@ -17,13 +17,14 @@ export const unsubscribe = () => {
   }
 };
 
-export const fetchGameHistory = async (dispatch: Dispatch<GameHistoryActions>) => {
-  if (subscription instanceof Initialized) {
-    subscription = subscribeToCollection(
-      'generatedGameHistory',
-      () => dispatch({ type: FETCH_GAME_HISTORY, payload: { id } }),
-      (payload: GameHistory[]) => dispatch({ type: FETCH_GAME_HISTORY_SUCCESS, payload }),
-      (payload: Error) => dispatch({ type: FETCH_GAME_HISTORY_FAILURE, payload })
-    );
-  }
-};
+export const fetchGameHistory =
+  (userId: string) => async (dispatch: Dispatch<GameHistoryActions>) => {
+    if (subscription instanceof Initialized) {
+      subscription = subscribeToCollection(
+        `games/${userId}/history`,
+        () => dispatch({ type: FETCH_GAME_HISTORY }),
+        (payload: GameHistory[]) => dispatch({ type: FETCH_GAME_HISTORY_SUCCESS, payload }),
+        (payload: Error) => dispatch({ type: FETCH_GAME_HISTORY_FAILURE, payload })
+      );
+    }
+  };

@@ -1,12 +1,14 @@
-import { Success } from '@abraham/remotedata';
+import { Failure, Success } from '@abraham/remotedata';
 import { computed, customElement, observe, property } from '@polymer/decorators';
 import { html, PolymerElement } from '@polymer/polymer';
 import { RouterLocation } from '@vaadin/router';
 import '../components/hero/simple-hero';
+import '../elements/games-user-history';
 import '../components/markdown/remote-markdown';
 import '../elements/footer-block';
 import { router } from '../router';
-import { selectGameHistory } from '../store/game-history/selectors';
+import { RootState, store } from '../store';
+import { fetchGameHistory } from '../store/game-history/actions';
 import { GameHistoryState } from '../store/game-history/state';
 import { ReduxMixin } from '../store/mixin';
 import { locationDetail, heroSettings } from '../utils/data';
@@ -24,7 +26,7 @@ export class GamesUserPage extends ReduxMixin(PolymerElement) {
       <simple-hero page="history">
         <div class="dialog-container header-content" layout horizontal center></div>
       </simple-hero>
-      <div>Mi ammazzo [[speaker]]</div>
+      <games-user-history></games-user-history>
       <footer-block></footer-block>
     `;
   }
@@ -45,6 +47,7 @@ export class GamesUserPage extends ReduxMixin(PolymerElement) {
 
   onAfterEnter(location: RouterLocation) {
     this.userId = location.params?.['id']?.toString();
+    if (this.userId) store.dispatch(fetchGameHistory(this.userId));
   }
 
   @computed('userId')
@@ -52,18 +55,16 @@ export class GamesUserPage extends ReduxMixin(PolymerElement) {
     return this.userId;
   }
 
-  @observe('userId')
-  onSpeakersAndSpeakerId(gameHistory: GameHistoryState, userId: string) {
-    if (userId && gameHistory instanceof Success) {
-      this.gameHistory = selectGameHistory(userId);
-      if (!this.speaker) {
-        router.render('/404');
-      } else {
-        updateImageMetadata(this.speaker.name, this.speaker.bio, {
-          image: this.speaker.photoUrl,
-          imageAlt: this.speaker.name,
-        });
+  @observe('gameHistory')
+  gameHistoryChanged(gameHistory: GameHistoryState) {
+    if (gameHistory instanceof Failure) {
+      if ('permission-denied' === (gameHistory.error as any)?.code) {
+        // router.render('/games');
       }
     }
+  }
+
+  override stateChanged(state: RootState) {
+    this.gameHistory = state.gamesHistory;
   }
 }

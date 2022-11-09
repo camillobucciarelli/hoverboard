@@ -50,13 +50,16 @@ export class GamesLeaderboard extends ReduxMixin(PolymerElement) {
       <table id="leaderboard">
         <tr>
           <th>Name</th>
-          <th colspan="2">Score</th>
+          <th>Score</th>
+          <!-- TODO: this part should be visible only for ORGANIZER USER -->
+          <th>Actions</th>
         </tr>
 
         <template is="dom-repeat" items="[[leaderboard]]" as="player">
           <tr>
             <td>[[player.name]]</td>
             <td>[[player.score]]</td>
+            <!-- TODO: this part should be visible only for ORGANIZER USER -->
             <td>
               <a href="/games/[[player.id]]">Edit</a>
             </td>

@@ -13,9 +13,6 @@ export type GameHistory = {
 
 interface FetchGameHistoryAction {
   type: typeof FETCH_GAME_HISTORY;
-  payload: {
-    id: string;
-  };
 }
 
 interface FetchGameHistoryFailureAction {
