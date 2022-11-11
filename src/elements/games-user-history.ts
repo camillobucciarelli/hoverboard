@@ -1,5 +1,5 @@
-import { Failure } from '@abraham/remotedata';
-import { computed, customElement, observe, property } from '@polymer/decorators';
+import { Failure, Initialized, Success } from '@abraham/remotedata';
+import { customElement, observe, property } from '@polymer/decorators';
 import '@polymer/iron-icon/';
 import { html, PolymerElement } from '@polymer/polymer';
 import '@power-elements/lazy-image';
@@ -23,6 +23,9 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
 
   @property({ type: Number })
   points: number = 0;
+
+  @property({ type: Boolean })
+  isOrganizer: boolean = false;
 
   private setPoints(el: InputEvent) {
     const value = (el.target as HTMLInputElement).valueAsNumber;
@@ -143,13 +146,13 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
               <td>c</td>
             </tr>
 
-            <template is="dom-repeat" items="[[item]]" as="gameHistory">
+            <!-- <template is="dom-repeat" items="[[item]]" as="gameHistory">
               <tr>
                 <td>[[gameHistory.points]]</td>
                 <td>[[gameHistory.type]]</td>
                 <td>[[gameHistory.timestamp]]</td>
               </tr>
-            </template>
+            </template> -->
           </table>
         </div>
       </div>
@@ -158,7 +161,10 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
 
   override connectedCallback(): void {
     super.connectedCallback();
-    if (this.userid) store.dispatch(fetchGameHistory(this.userid));
+    if (this.userid) {
+      console.log('userid', this.userid);
+      store.dispatch(fetchGameHistory(this.userid));
+    }
   }
 
   @observe('gameHistory')
@@ -172,6 +178,9 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
 
   override stateChanged(state: RootState) {
     this.gameHistory = state.gamesHistory;
+    if (state.user instanceof Success) {
+      this.isOrganizer = state.user.data.claims.role === 'ORGANIZER';
+    }
   }
 
   override disconnectedCallback(): void {

@@ -1,10 +1,12 @@
-import { computed, customElement, observe, property } from '@polymer/decorators';
+import { Success } from '@abraham/remotedata';
+import { customElement, observe, property } from '@polymer/decorators';
 import { html, PolymerElement } from '@polymer/polymer';
 import { RouterLocation } from '@vaadin/router';
 import '../components/hero/simple-hero';
 import '../components/markdown/remote-markdown';
 import '../elements/footer-block';
 import '../elements/games-user-history';
+import { RootState } from '../store';
 import { GameHistoryState } from '../store/game-history/state';
 import { ReduxMixin } from '../store/mixin';
 import { heroSettings, locationDetail } from '../utils/data';
@@ -22,7 +24,7 @@ export class GamesUserPage extends ReduxMixin(PolymerElement) {
       <simple-hero page="history">
         <div class="dialog-container header-content" layout horizontal center></div>
       </simple-hero>
-      <template is="dom-if" if="[[userId]]">
+      <template is="dom-if" if="[[isOrganizer]]">
         <games-user-history userid="[[userId]]"></games-user-history>
       </template>
       <footer-block></footer-block>
@@ -37,6 +39,8 @@ export class GamesUserPage extends ReduxMixin(PolymerElement) {
   userId: string | undefined;
   @property({ type: Array })
   gameHistory: GameHistoryState | undefined;
+  @property({ type: Boolean })
+  isOrganizer: boolean = false;
 
   override connectedCallback() {
     super.connectedCallback();
@@ -52,8 +56,9 @@ export class GamesUserPage extends ReduxMixin(PolymerElement) {
     console.log('userIdChanged', userId);
   }
 
-  // @computed('userId')
-  // get user() {
-  //   return this.userId;
-  // }
+  override stateChanged(state: RootState) {
+    if (state.user instanceof Success) {
+      this.isOrganizer = state.user.data.claims.role === 'ORGANIZER';
+    }
+  }
 }

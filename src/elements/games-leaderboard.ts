@@ -50,18 +50,20 @@ export class GamesLeaderboard extends ReduxMixin(PolymerElement) {
         <tr>
           <th>Name</th>
           <th>Score</th>
-          <!-- TODO: this part should be visible only for ORGANIZER USER -->
-          <th>Actions</th>
+          <template is="dom-if" if="[[isOrganizer]]">
+            <th>Actions</th>
+          </template>
         </tr>
 
         <template is="dom-repeat" items="[[leaderboard]]" as="player">
           <tr>
             <td>[[player.name]]</td>
             <td>[[player.score]]</td>
-            <!-- TODO: this part should be visible only for ORGANIZER USER -->
-            <td>
-              <a href="/games/[[player.id]]">Edit</a>
-            </td>
+            <template is="dom-if" if="[[isOrganizer]]">
+              <td>
+                <a href="/games/[[player.id]]">Edit</a>
+              </td>
+            </template>
           </tr>
         </template>
       </table>
@@ -72,9 +74,15 @@ export class GamesLeaderboard extends ReduxMixin(PolymerElement) {
   players = initialPlayersState;
   @property({ type: Array })
   leaderboard: Player[] = [];
+  @property({ type: Array })
+  isOrganizer: boolean = false;
 
   override stateChanged(state: RootState) {
     this.players = state.players;
+
+    if (state.user instanceof Success) {
+      this.isOrganizer = state.user.data.claims.role === 'ORGANIZER';
+    }
 
     if (this.players instanceof Initialized) {
       store.dispatch(fetchPlayers);
