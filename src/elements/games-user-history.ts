@@ -1,5 +1,5 @@
 import { Failure } from '@abraham/remotedata';
-import { customElement, observe, property } from '@polymer/decorators';
+import { computed, customElement, observe, property } from '@polymer/decorators';
 import '@polymer/iron-icon/';
 import { html, PolymerElement } from '@polymer/polymer';
 import '@power-elements/lazy-image';
@@ -20,6 +20,25 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
 
   @property({ type: String })
   gameHistory: GameHistoryState | undefined;
+
+  @property({ type: Number })
+  points: number = 0;
+
+  private setPoints(el: InputEvent) {
+    const value = (el.target as HTMLInputElement).valueAsNumber;
+
+    this.points = value;
+  }
+
+  private removePoints() {
+    // TODO implement action to remove points
+    console.log('remove');
+  }
+
+  private addPoints() {
+    // TODO implement action to add points
+    console.log('add');
+  }
 
   static get template() {
     return html`
@@ -87,18 +106,23 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
       <div class="container content">
         <div class="user">
           <div class="user-details">
-            <h2 class="user-name">utente? [[userid]]</h2>
-            <div class="user-description">---</div>
+            <h2 class="user-name">Nome utente</h2>
+            <div class="user-description">#[[userid]]</div>
           </div>
           <div class="add-or-remove">
             <h3>Add or remove points</h3>
 
-            <paper-input type="number"></paper-input>
-            <paper-button raised primary class="icon-left">
+            <paper-input
+              name="point"
+              value="[[points]]"
+              on-change="setPoints"
+              type="number"
+            ></paper-input>
+            <paper-button on-click="addPoints" raised primary class="icon-left">
               <iron-icon icon="hoverboard:add-circle-outline" class="icon-left"></iron-icon>
               <span>Add</span></paper-button
             >
-            <paper-button
+            <paper-button on-click="removePoints"
               ><iron-icon icon="hoverboard:remove-circle-outline" class="icon-left">-</iron-icon>
               <span>Remove</span></paper-button
             >
@@ -111,11 +135,21 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
               <th>Type</th>
               <th>Timestamp</th>
             </tr>
+
+            <!-- temporary placheholder -->
             <tr>
               <td>a</td>
               <td>b</td>
               <td>c</td>
             </tr>
+
+            <template is="dom-repeat" items="[[item]]" as="gameHistory">
+              <tr>
+                <td>[[gameHistory.points]]</td>
+                <td>[[gameHistory.type]]</td>
+                <td>[[gameHistory.timestamp]]</td>
+              </tr>
+            </template>
           </table>
         </div>
       </div>
