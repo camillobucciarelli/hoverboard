@@ -4,6 +4,8 @@ export const FETCH_GAME_HISTORY = 'FETCH_GAME_HISTORY';
 export const FETCH_GAME_HISTORY_FAILURE = 'FETCH_GAME_HISTORY_FAILURE';
 export const FETCH_GAME_HISTORY_SUCCESS = 'FETCH_GAME_HISTORY_SUCCESS';
 
+export type Player = { score: number; name: string; plays: boolean };
+
 export type GameHistory = {
   points: number;
   ref: string;

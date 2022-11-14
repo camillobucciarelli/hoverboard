@@ -1,15 +1,23 @@
-import { Failure, Initialized, Success } from '@abraham/remotedata';
-import { customElement, observe, property } from '@polymer/decorators';
+import { Failure, Success } from '@abraham/remotedata';
+import { computed, customElement, observe, property } from '@polymer/decorators';
 import '@polymer/iron-icon/';
 import { html, PolymerElement } from '@polymer/polymer';
 import '@power-elements/lazy-image';
+import { Timestamp } from 'firebase/firestore';
 
 import '../components/markdown/short-markdown';
 import '../components/text-truncate';
 import { router } from '../router';
 import { RootState, store } from '../store';
-import { fetchGameHistory, unsubscribe } from '../store/game-history/actions';
+import {
+  changeManually,
+  fetchGameHistory,
+  fetchPlayer,
+  unsubscribe
+} from '../store/game-history/actions';
 import { GameHistoryState } from '../store/game-history/state';
+import { Player } from '../store/game-history/types';
+import { unsubscribe as unsubscribeGames } from '../store/games/actions';
 import { ReduxMixin } from '../store/mixin';
 import './shared-styles';
 
@@ -18,8 +26,8 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
   @property({ type: String })
   userid: string | undefined;
 
-  @property({ type: String })
-  gameHistory: GameHistoryState | undefined;
+  @property({ type: Array })
+  gameHistory: any[] = [];
 
   @property({ type: Number })
   points: number = 0;
@@ -27,20 +35,35 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
   @property({ type: Boolean })
   isOrganizer: boolean = false;
 
-  private setPoints(el: InputEvent) {
-    const value = (el.target as HTMLInputElement).valueAsNumber;
-
-    this.points = value;
-  }
+  @property({ type: Object })
+  player: Player | null = null;
 
   private removePoints() {
-    // TODO implement action to remove points
-    console.log('remove');
+    if (this.userid && this.points > 0 && !isNaN(this.points)) {
+      changeManually(this.userid, {
+        points: -Number(this.points),
+        type: 'BY_HAND',
+        ref: 'ADMIN',
+        timestamp: Timestamp.now(),
+      });
+    }
   }
 
   private addPoints() {
     // TODO implement action to add points
-    console.log('add');
+    if (this.userid && this.points > 0 && !isNaN(this.points)) {
+      changeManually(this.userid, {
+        points: Number(this.points),
+        type: 'BY_HAND',
+        ref: 'ADMIN',
+        timestamp: Timestamp.now(),
+      });
+    }
+  }
+
+  @computed('gameHistory')
+  get totalPoints() {
+    return this.gameHistory.reduce((acc, item) => acc + item.points, 0);
   }
 
   static get template() {
@@ -109,18 +132,17 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
       <div class="container content">
         <div class="user">
           <div class="user-details">
-            <h2 class="user-name">Nome utente</h2>
-            <div class="user-description">#[[userid]]</div>
+            <h2 class="user-name">[[player.name]]</h2>
+            <!-- <div class="user-description">#[[userid]]</div> -->
+            <div>
+              <span class="user-description">Total points: </span>
+              <span class="user-name">[[totalPoints]]</span>
+            </div>
           </div>
           <div class="add-or-remove">
             <h3>Add or remove points</h3>
 
-            <paper-input
-              name="point"
-              value="[[points]]"
-              on-change="setPoints"
-              type="number"
-            ></paper-input>
+            <paper-input value="{{points}}" name="point" type="number"></paper-input>
             <paper-button on-click="addPoints" raised primary class="icon-left">
               <iron-icon icon="hoverboard:add-circle-outline" class="icon-left"></iron-icon>
               <span>Add</span></paper-button
@@ -136,23 +158,17 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
             <tr>
               <th>Points</th>
               <th>Type</th>
+              <th>Ref</th>
               <th>Timestamp</th>
             </tr>
-
-            <!-- temporary placheholder -->
-            <tr>
-              <td>a</td>
-              <td>b</td>
-              <td>c</td>
-            </tr>
-
-            <!-- <template is="dom-repeat" items="[[item]]" as="gameHistory">
+            <template is="dom-repeat" items="[[gameHistory]]" as="item">
               <tr>
-                <td>[[gameHistory.points]]</td>
-                <td>[[gameHistory.type]]</td>
-                <td>[[gameHistory.timestamp]]</td>
+                <td>[[item.points]]</td>
+                <td>[[item.type]]</td>
+                <td>[[item.ref]]</td>
+                <td>[[item.timestamp.date]] [[item.timestamp.time]]</td>
               </tr>
-            </template> -->
+            </template>
           </table>
         </div>
       </div>
@@ -164,6 +180,7 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
     if (this.userid) {
       console.log('userid', this.userid);
       store.dispatch(fetchGameHistory(this.userid));
+      store.dispatch(fetchPlayer(this.userid));
     }
   }
 
@@ -177,15 +194,28 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
   }
 
   override stateChanged(state: RootState) {
-    this.gameHistory = state.gamesHistory;
     if (state.user instanceof Success) {
       this.isOrganizer = state.user.data.claims.role === 'ORGANIZER';
+    }
+
+    if (state.gamesHistory instanceof Success) {
+      this.gameHistory = state.gamesHistory.data.map((item) => {
+        const date = item.timestamp.toDate();
+        return {
+          ...item,
+          timestamp: { date: date.toLocaleDateString(), time: date.toLocaleTimeString() },
+        };
+      });
+    }
+
+    if (!state.player.isLoading && state.player.data) {
+      this.player = state.player.data;
     }
   }
 
   override disconnectedCallback(): void {
-    console.log('disconnectedCallback');
     unsubscribe();
+    unsubscribeGames();
     super.disconnectedCallback();
   }
 }

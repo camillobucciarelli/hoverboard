@@ -1,10 +1,12 @@
-import { Failure, Pending, Success } from '@abraham/remotedata';
+import { Failure, Initialized, Pending, RemoteData, Success } from '@abraham/remotedata';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GameHistoryState, initialGameHistoryState } from './state';
 import {
   FETCH_GAME_HISTORY,
   FETCH_GAME_HISTORY_FAILURE,
   FETCH_GAME_HISTORY_SUCCESS,
   GameHistoryActions,
+  Player,
 } from './types';
 
 export const gameHistoryReducer = (
@@ -25,3 +27,30 @@ export const gameHistoryReducer = (
       return state;
   }
 };
+
+const initialState: { isLoading: boolean; data: Player | null; error: Error | null } = {
+  isLoading: true,
+  data: null,
+  error: null,
+};
+
+export const playerSlicer = createSlice({
+  name: 'PLAYER',
+  initialState,
+  reducers: {
+    setPlayer: (state) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    setPlayerSuccess: (state, action: PayloadAction<Player>) => {
+      state.data = action.payload;
+      state.isLoading = false;
+    },
+    setPlayerFailure: (state, action: PayloadAction<Error>) => {
+      state.error = action.payload;
+      state.isLoading = false;
+    },
+  },
+});
+
+export const playerReducer = playerSlicer.reducer;
