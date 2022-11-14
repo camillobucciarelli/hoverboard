@@ -1,5 +1,5 @@
 import { Initialized, Success } from '@abraham/remotedata';
-import { customElement, property } from '@polymer/decorators';
+import { computed, customElement, property } from '@polymer/decorators';
 import { html, PolymerElement } from '@polymer/polymer';
 import '@power-elements/lazy-image';
 import '../components/markdown/short-markdown';
@@ -11,9 +11,19 @@ import { selectLeaderboard } from '../store/games/selectors';
 import { initialPlayersState } from '../store/games/state';
 import { ReduxMixin } from '../store/mixin';
 import './shared-styles';
-
+import '@polymer/paper-input/paper-input.js';
 @customElement('games-leaderboard')
 export class GamesLeaderboard extends ReduxMixin(PolymerElement) {
+  @property({ type: String })
+  search: string = '';
+
+  @computed('search','leaderboard')
+  get filteredLeaderboard() {
+    return this.leaderboard.filter((player) =>
+      player.name?.toLowerCase().includes(this.search.toLowerCase())
+    );
+  }
+
   static get template() {
     return html`
       <style include="shared-styles flex flex-alignment positioning">
@@ -46,6 +56,8 @@ export class GamesLeaderboard extends ReduxMixin(PolymerElement) {
 
       <h1>Leaderboard</h1>
 
+      <paper-input value="{{search}}" name="point" label="Name filter"></paper-input>
+
       <table id="leaderboard">
         <tr>
           <th>Name</th>
@@ -55,7 +67,7 @@ export class GamesLeaderboard extends ReduxMixin(PolymerElement) {
           </template>
         </tr>
 
-        <template is="dom-repeat" items="[[leaderboard]]" as="player">
+        <template is="dom-repeat" items="[[filteredLeaderboard]]" as="player">
           <tr>
             <td>[[player.name]]</td>
             <td>[[player.score]]</td>

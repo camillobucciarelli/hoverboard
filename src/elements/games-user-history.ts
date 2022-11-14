@@ -13,7 +13,7 @@ import {
   changeManually,
   fetchGameHistory,
   fetchPlayer,
-  unsubscribe
+  unsubscribe,
 } from '../store/game-history/actions';
 import { GameHistoryState } from '../store/game-history/state';
 import { Player } from '../store/game-history/types';
@@ -73,6 +73,11 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
           display: block;
         }
 
+        .game-user-history {
+          display: flex;
+          flex-direction: column;
+        }
+
         .user-history {
           padding: 0 80px;
           width: 100%;
@@ -96,15 +101,25 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
         }
 
         .add-or-remove {
-          margin: 15px 0;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
           padding: 15px 10px;
           border: 1px solid var(--border-light-color);
+          background-color: white;
           border-radius: 5px;
-          max-width: 300px;
+          width: 100%;
+        }
+
+        .action-buttons {
+          text-align: right;
         }
 
         .user {
-          padding-bottom: 20px;
+          order: 2;
+          position: sticky;
+          bottom: 0;
+          width: 100%;
         }
 
         @media (min-width: 1024px) {
@@ -112,6 +127,19 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
             display: flex;
             align-items: center;
             gap: 15px;
+            order: 0;
+            position: static;
+            padding-bottom: 20px;
+          }
+
+          .action-buttons {
+            text-align: left;
+          }
+
+          .add-or-remove {
+            max-width: 450px;
+            margin: 15px 0;
+            padding: 15px 20px;
           }
 
           .user-details {
@@ -129,28 +157,33 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
         }
       </style>
       <!-- Visualizzare la tipologia, il timestamp, il numero di punteggi assegnati, la reference -->
-      <div class="container content">
+      <div class="container content game-user-history">
         <div class="user">
-          <div class="user-details">
-            <h2 class="user-name">[[player.name]]</h2>
-            <!-- <div class="user-description">#[[userid]]</div> -->
-            <div>
-              <span class="user-description">Total points: </span>
-              <span class="user-name">[[totalPoints]]</span>
-            </div>
-          </div>
           <div class="add-or-remove">
-            <h3>Add or remove points</h3>
-
-            <paper-input value="{{points}}" name="point" type="number"></paper-input>
-            <paper-button on-click="addPoints" raised primary class="icon-left">
-              <iron-icon icon="hoverboard:add-circle-outline" class="icon-left"></iron-icon>
-              <span>Add</span></paper-button
-            >
-            <paper-button on-click="removePoints"
-              ><iron-icon icon="hoverboard:remove-circle-outline" class="icon-left">-</iron-icon>
-              <span>Remove</span></paper-button
-            >
+            <div class="user-details">
+              <h2 class="user-name">[[player.name]]</h2>
+              <!-- <div class="user-description">#[[userid]]</div> -->
+              <div>
+                <span class="user-description">Total points: </span>
+                <span class="user-name">[[totalPoints]]</span>
+              </div>
+            </div>
+            <paper-input
+              label="Add or remove points"
+              value="{{points}}"
+              name="point"
+              type="number"
+            ></paper-input>
+            <div class="action-buttons">
+              <paper-button on-click="addPoints" raised primary class="icon-left">
+                <iron-icon icon="hoverboard:add-circle-outline" class="icon-left"></iron-icon>
+                <span>Add</span></paper-button
+              >
+              <paper-button on-click="removePoints"
+                ><iron-icon icon="hoverboard:remove-circle-outline" class="icon-left">-</iron-icon>
+                <span>Remove</span></paper-button
+              >
+            </div>
           </div>
         </div>
         <div>
