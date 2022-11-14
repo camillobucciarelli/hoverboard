@@ -76,6 +76,8 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
         .game-user-history {
           display: flex;
           flex-direction: column;
+          min-height: 100vh;
+          justify-content: space-between;
         }
 
         .user-history {
@@ -97,7 +99,7 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
         }
 
         .user-history tr:nth-child(odd) {
-          background-color: var(--disabled-text-color);
+          background-color: var(--google-grey-100);
         }
 
         .add-or-remove {
@@ -122,7 +124,81 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
           width: 100%;
         }
 
+        .user-history {
+          border: 1px solid #ccc;
+          border-collapse: collapse;
+          margin: 0;
+          padding: 0;
+          width: 100%;
+          table-layout: fixed;
+        }
+
+        .user-history tr {
+          border: 1px solid var(--border-light-color);
+          padding: 0.35em;
+        }
+
+        .user-history th,
+        .user-history td {
+          padding: 0.625em;
+          text-align: center;
+        }
+
+        .user-history th {
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+        }
+
+        @media screen and (max-width: 600px) {
+          .user-history {
+            border: 0;
+          }
+
+          .user-history caption {
+            font-size: 1.3em;
+          }
+
+          .user-history thead {
+            border: none;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+          }
+
+          .user-history tr {
+            border-bottom: 3px solid #ddd;
+            display: block;
+            margin-bottom: 0.625em;
+          }
+
+          .user-history td {
+            border-bottom: 1px solid #ddd;
+            display: block;
+            font-size: 0.8em;
+            text-align: right;
+          }
+
+          .user-history td::before {
+            content: attr(data-label);
+            float: left;
+            font-weight: bold;
+            text-transform: uppercase;
+          }
+
+          .user-history td:last-child {
+            border-bottom: 0;
+          }
+        }
+
         @media (min-width: 1024px) {
+          .game-user-history {
+            min-height: initial;
+          }
+
           .user {
             display: flex;
             align-items: center;
@@ -188,20 +264,24 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
         </div>
         <div>
           <table class="user-history">
-            <tr>
-              <th>Points</th>
-              <th>Type</th>
-              <th>Ref</th>
-              <th>Timestamp</th>
-            </tr>
-            <template is="dom-repeat" items="[[gameHistory]]" as="item">
+            <thead>
               <tr>
-                <td>[[item.points]]</td>
-                <td>[[item.type]]</td>
-                <td>[[item.ref]]</td>
-                <td>[[item.timestamp.date]] [[item.timestamp.time]]</td>
+                <th scope="col">Points</th>
+                <th scope="col">Type</th>
+                <th scope="col">Ref</th>
+                <th scope="col">Timestamp</th>
               </tr>
-            </template>
+            </thead>
+            <tbody>
+              <template is="dom-repeat" items="[[gameHistory]]" as="item">
+                <tr>
+                  <td data-label="Points">[[item.points]]</td>
+                  <td data-label="Type">[[item.type]]</td>
+                  <td data-label="Ref">[[item.ref]]</td>
+                  <td data-label="Timestamp">[[item.timestamp.date]] [[item.timestamp.time]]</td>
+                </tr>
+              </template>
+            </tbody>
           </table>
         </div>
       </div>
