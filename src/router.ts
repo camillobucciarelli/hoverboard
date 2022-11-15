@@ -144,6 +144,25 @@ const ROUTES: Route[] = [
     ],
   },*/
   {
+    path: '/games',
+    children: [
+      {
+        path: '',
+        component: 'games-page',
+        action: async () => {
+          await import('./pages/games-page.js');
+        },
+      },
+      {
+        path: '/:id',
+        component: 'games-user-page',
+        action: async () => {
+          await import('./pages/games-user-page.js');
+        },
+      },
+    ],
+  },
+  {
     path: '/team',
     component: 'team-page',
     action: async () => {

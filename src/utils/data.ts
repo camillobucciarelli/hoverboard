@@ -49,6 +49,7 @@ export {
   title,
   image,
   viewHighlights,
+  games,
 } from '../../public/data/resources.json';
 export {
   contentLoaders,

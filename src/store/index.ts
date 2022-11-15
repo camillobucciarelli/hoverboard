@@ -6,6 +6,8 @@ import { featuredSessionsReducer } from './featured-sessions/reducers';
 import feedback from './feedback';
 import { filtersReducer } from './filters/reducers';
 import { galleryReducer } from './gallery/reducers';
+import { gameHistoryReducer, playerReducer } from './game-history/reducer';
+import { playerSettingsReducer, playersReducer } from './games/reducers';
 import { membersReducer } from './members/reducers';
 import notificationPermission from './notification-permission';
 import { notificationsSubscribersReducer } from './notifications-subscribers/reducers';
@@ -39,6 +41,10 @@ export const store = configureStore({
     feedback,
     filters: filtersReducer,
     gallery: galleryReducer,
+    gamesHistory: gameHistoryReducer,
+    player: playerReducer,
+    players: playersReducer,
+    playerSettings: playerSettingsReducer,
     members: membersReducer,
     notificationPermission,
     notificationsSubscribers: notificationsSubscribersReducer,

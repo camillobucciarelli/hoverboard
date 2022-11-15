@@ -15,6 +15,7 @@ export const theme = css`
     --divider-color: #ededed;
     --footer-background-color: #f5f5f5;
     --footer-text-color: #616161;
+    --instagram-color: rgb(255 48 64);
     --twitter-color: #4099ff;
     --facebook-color: #3b5998;
     --border-light-color: #e2e2e2;
@@ -40,6 +41,7 @@ export const theme = css`
     --primary-color-transparent: rgb(103 58 183 / 10%);
     --primary-color-light: rgb(103 58 183 / 80%);
     --primary-color-white: #ede7f6;
+    --th-background-color: #ffba00;
 
     /* Labels */
     --gde: #3d5afe;

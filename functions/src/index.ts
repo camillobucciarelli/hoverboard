@@ -11,6 +11,7 @@ import { sendGeneralNotification } from './notifications.js';
 import { optimizeImages } from './optimize-images.js';
 import { prerender } from './prerender.js';
 import { scheduleNotifications } from './schedule-notifications.js';
+import { updateScore } from './update-score.js';
 
 // TODO: Update `tsconfig.json`
 // - "noImplicitReturns": true,
@@ -27,4 +28,5 @@ export {
   scheduleWrite,
   sessionsWrite,
   speakersWrite,
+  updateScore,
 };
