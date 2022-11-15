@@ -103,6 +103,15 @@
       },
       "fontColor": "#424242"
     },
+    "history": {
+      "title": "Games History",
+      "metaDescription": "games history",
+      "description": "User history",
+      "background": {
+        "color": "#FFF"
+      },
+      "fontColor": "#424242"
+    },
     "team": {
       "title": "Team",
       "metaDescription": "Get more info about organizers",

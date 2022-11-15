@@ -60,7 +60,9 @@ export const subscribeToCollection = <T>(
 ): Subscription => {
   const unsubscribe = onSnapshot(
     query(collection(db, path), order),
-    (snapshot) => onNext(snapshot.docs.map<T>(mergeDataAndId)),
+    (snapshot) => {
+      onNext(snapshot.docs.map<T>(mergeDataAndId));
+    },
     (payload) => onError(payload)
   );
 
