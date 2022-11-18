@@ -27,8 +27,8 @@ interface User {
 }
 
 interface TweetsResponse {
-  "data": Tweet[],
-  "includes": {
+  data?: Tweet[],
+  includes?: {
     "users": User[]
   },
   "meta": {
@@ -37,7 +37,7 @@ interface TweetsResponse {
     "result_count": number
   }
 }
-
+// export const scheduleTwitterScanner = functions.https.onRequest(async (req, res) => {
 export const scheduleTwitterScanner = functions.pubsub
   .schedule('every 5 minutes')
   .onRun(async () => {
@@ -61,6 +61,11 @@ export const scheduleTwitterScanner = functions.pubsub
     axios(config)
       .then(async (response) => {
           const tweetsResponse = response.data as TweetsResponse;
+          if(!tweetsResponse.data || !tweetsResponse.includes) {
+            console.log('No tweets found');
+            return;
+          }
+        console.log('Starting to process tweets');
           await getFirestore()
             .collection('socialSearch')
             .doc('twitter')
@@ -82,14 +87,14 @@ export const scheduleTwitterScanner = functions.pubsub
                   .collection('games')
                   .doc(user.id)
                   .collection('history')
-                  .where('tweetId', '==', tweet.id)
+                  .where('id', '==', tweet.id)
                   .get()).docs.length > 0;
                 if (!hasTweet) {
                   await getFirestore().collection('games').doc(user.id).collection('history').add({
                     insert_on: Timestamp.now(),
                     type: 'TWITTER',
                     score: configurations.points,
-                    tweetId: tweet.id,
+                    id: tweet.id,
                     data: tweet
                   });
                 }
@@ -98,7 +103,7 @@ export const scheduleTwitterScanner = functions.pubsub
           }
         }
       )
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   });
