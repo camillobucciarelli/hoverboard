@@ -25,7 +25,7 @@ export const scheduleInstagramScanner = functions.pubsub
   .schedule('every 5 minutes')
   .onRun(async () => {
   const configurations: InstagramConfiguration = (await getFirestore()
-    .collection('confing')
+    .collection('config')
     .doc('socialSearch')
     .get()).data() as InstagramConfiguration;
   const config = {
@@ -57,7 +57,7 @@ export const instagramObserver = functions.firestore
   .document('socialSearch/instagram/posts/{postId}')
   .onWrite(async (change, context) => {
     const configurations: InstagramConfiguration = (await getFirestore()
-      .collection('confing')
+      .collection('config')
       .doc('socialSearch')
       .get()).data() as InstagramConfiguration;
     const instagramPost: Post = (await getFirestore()
