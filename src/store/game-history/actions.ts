@@ -33,7 +33,7 @@ export const fetchGameHistory =
         return dispatch({ type: FETCH_GAME_HISTORY_SUCCESS, payload });
       },
       (payload: Error) => dispatch({ type: FETCH_GAME_HISTORY_FAILURE, payload }),
-      orderBy('timestamp', 'desc')
+      orderBy('insert_on', 'desc')
     );
   };
 

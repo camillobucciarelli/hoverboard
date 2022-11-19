@@ -9,7 +9,7 @@ export type Player = { score: number; name: string; plays: boolean };
 export type GameHistory = {
   points: number;
   ref: string;
-  timestamp: Timestamp;
+  insert_on: Timestamp;
   type: 'BY_HAND' | 'TWITTER' | 'INSTAGRAM';
 };
 

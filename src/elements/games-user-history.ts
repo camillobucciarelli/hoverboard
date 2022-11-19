@@ -44,7 +44,7 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
         points: -Number(this.points),
         type: 'BY_HAND',
         ref: 'ADMIN',
-        timestamp: Timestamp.now(),
+        insert_on: Timestamp.now(),
       });
     }
   }
@@ -56,7 +56,7 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
         points: Number(this.points),
         type: 'BY_HAND',
         ref: 'ADMIN',
-        timestamp: Timestamp.now(),
+        insert_on: Timestamp.now(),
       });
     }
   }
@@ -278,7 +278,7 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
                   <td data-label="Points">[[item.points]]</td>
                   <td data-label="Type">[[item.type]]</td>
                   <td data-label="Ref">[[item.ref]]</td>
-                  <td data-label="Timestamp">[[item.timestamp.date]] [[item.timestamp.time]]</td>
+                  <td data-label="Timestamp">[[item.insert_on.date]] [[item.insert_on.time]]</td>
                 </tr>
               </template>
             </tbody>
@@ -313,10 +313,10 @@ export class GamesUserHistory extends ReduxMixin(PolymerElement) {
 
     if (state.gamesHistory instanceof Success) {
       this.gameHistory = state.gamesHistory.data.map((item) => {
-        const date = item.timestamp.toDate();
+        const date = item.insert_on.toDate();
         return {
           ...item,
-          timestamp: { date: date.toLocaleDateString(), time: date.toLocaleTimeString() },
+          insert_on: { date: date.toLocaleDateString(), time: date.toLocaleTimeString() },
         };
       });
     }
