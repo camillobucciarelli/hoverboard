@@ -76,9 +76,10 @@ export const mergeAccounts = async (providerId: PROVIDER, pendingCredential: OAu
 };
 
 export const onUser = () => {
-  onAuthStateChanged(auth, (user: FirebaseUser | null) => {
+  onAuthStateChanged(auth, async (user: FirebaseUser | null) => {
     if (user) {
-      setUser(user);
+      const { claims } = await user.getIdTokenResult();
+      setUser(user, claims);
       logLogin();
     } else {
       unAuth();
