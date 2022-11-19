@@ -22,8 +22,8 @@ export class GamesSettingsboard extends ReduxMixin(PolymerElement) {
         }
 
         paper-toggle-button.green {
-          --paper-toggle-button-checked-bar-color:  var(--default-primary-color);
-          --paper-toggle-button-checked-button-color:  var(--default-primary-color);
+          --paper-toggle-button-checked-bar-color: var(--default-primary-color);
+          --paper-toggle-button-checked-button-color: var(--default-primary-color);
           --paper-toggle-button-checked-ink-color: var(--default-primary-color);
         }
 
@@ -32,20 +32,18 @@ export class GamesSettingsboard extends ReduxMixin(PolymerElement) {
         }
 
         #social-settings {
-          display: table;
+          display: flex;
           width: 100%;
         }
 
         .social-row {
-          display: table-row;
-          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
         }
 
         .social-cell {
-          display: table-column;
-          width: 50%;
-          float:left;
-          text-align: center;
+          display: block;
+          flex-wrap: wrap;
         }
 
         .twitter-icon {
@@ -56,15 +54,15 @@ export class GamesSettingsboard extends ReduxMixin(PolymerElement) {
           color: var(--instagram-color);
         }
       </style>
-      
+
       <h1>Settings</h1>
       <div class="settings">
-        <paper-toggle-button 
+        <paper-toggle-button
           class="green"
           checked="[[playerSettings.plays]]"
           on-click="togglePlays"
         >
-            I want to play!
+          I want to play!
         </paper-toggle-button>
         <template is="dom-if" if="[[playerSettings.plays]]">
           <div id="social-settings">
@@ -88,7 +86,8 @@ export class GamesSettingsboard extends ReduxMixin(PolymerElement) {
             </div>
           </div>
         </template>
-      <div>
+        <div></div>
+      </div>
     `;
   }
 
@@ -106,7 +105,7 @@ export class GamesSettingsboard extends ReduxMixin(PolymerElement) {
     this.user = state.user;
     this.playerSettingsState = state.playerSettings;
     this.signedIn = state.user instanceof Success;
-    
+
     if (this.user instanceof Success) {
       this.playerSettings = selectPlayerSettings(state);
     }

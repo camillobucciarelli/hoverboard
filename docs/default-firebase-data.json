@@ -50,7 +50,7 @@
           "url": "https://plus.google.com/102444623953913144164"
         }
       ],
-      "order": 4,
+      "order": 5,
       "title": "Template Creator"
     },
     {
@@ -84,9 +84,15 @@
           "logoUrl": "../images/logos/20tab.png",
           "name": "20tab",
           "url": "https://www.20tab.com/"
+        },
+        {
+          "order": 5,
+          "logoUrl": "../images/logos/ms3.png",
+          "name": "MS3",
+          "url": "https://www.ms3.it/"
         }
       ],
-      "order": 3,
+      "order": 4,
       "title": "Silver Partner"
     },
     {
@@ -98,7 +104,7 @@
           "url": "https://scuolacomics.com/sede/pescara"
         }
       ],
-      "order": 2,
+      "order": 3,
       "title": "Gold Partner"
     },
     {
@@ -116,8 +122,26 @@
           "url": "https://www.r2u.it/"
         }
       ],
-      "order": 1,
+      "order": 2,
       "title": "Platinum Partner"
+    },
+    {
+      "items": [
+        {
+          "order": 0,
+          "logoUrl": "../images/logos/gdg_cloud_torino.png",
+          "name": "GDG Cloud Torino",
+          "url": "https://www.gdgcloudtorino.it/"
+        },
+        {
+          "order": 1,
+          "logoUrl": "../images/logos/leanstartuplabpescara.jpeg",
+          "name": "Lean Startup Lab Pescara",
+          "url": "https://www.meetup.com/it-IT/lean-startup-lab/?from=ref"
+        }
+      ],
+      "order": 1,
+      "title": "Community Partner"
     },
     {
       "items": [
@@ -129,24 +153,18 @@
         },
         {
           "order": 1,
-          "logoUrl": "../images/logos/gdg_cloud_torino.png",
-          "name": "GDG Cloud Torino",
-          "url": "https://www.gdgcloudtorino.it/"
-        },
-        {
-          "order": 2,
           "logoUrl": "../images/logos/uda.png",
           "name": "Università G. D'Annunzio",
           "url": "https://www.unich.it/"
         },
         {
-          "order": 3,
+          "order": 2,
           "logoUrl": "../images/logos/dec.png",
           "name": "DEC",
           "url": "https://www.dec.unich.it/index.php?gruppo=1"
         },
         {
-          "order": 4,
+          "order": 3,
           "logoUrl": "../images/logos/gdg-x.svg",
           "name": "GDG[x]",
           "url": "https://github.com/gdg-x"
@@ -351,12 +369,7 @@
           "endTime": "09:45",
           "sessions": [
             {
-              "items": ["902"],
-              "span": 2
-            }, 
-            {
-              "items": ["802"],
-              "extend": 5
+              "items": ["907"]
             }
           ],
           "startTime": "09:30"
@@ -365,8 +378,12 @@
           "endTime": "10:00",
           "sessions": [
             {
-              "items": ["907"],
+              "items": ["902"],
               "span": 2
+            },
+            {
+              "items": ["802"],
+              "extend": 5
             }
           ],
           "startTime": "09:45"
@@ -413,9 +430,6 @@
             },
             {
               "items": ["402"]
-            },
-            {
-              "items": ["901"]
             }
           ],
           "startTime": "12:00"
@@ -424,13 +438,13 @@
           "endTime": "13:30",
           "sessions": [
             {
-              "items": ["901"]
+              "items": ["309"]
             },
             {
               "items": ["401"]
             },
             {
-              "items": ["901"]
+              "items": ["803"]
             }
           ],
           "startTime": "12:45"
@@ -452,6 +466,9 @@
             },
             {
               "items": ["110"]
+            },
+            {
+              "items": ["804"]
             }
           ],
           "startTime": "14:30"
@@ -460,16 +477,22 @@
           "endTime": "16:00",
           "sessions": [
             {
-              "items": ["901"]
+              "items": ["205"]
             },
             {
               "items": ["308"]
-            },
-            {
-              "items": ["901"]
             }
           ],
           "startTime": "15:15"
+        },
+        {
+          "endTime": "16:30",
+          "sessions": [
+            {
+              "items": ["909"]
+            }
+          ],
+          "startTime": "16:00"
         }
       ],
       "tracks": [
@@ -598,6 +621,14 @@
       "tags": ["Accessibility", "Inspirational", "Diversity", "Inclusion"],
       "title": "Fare content marketing attraverso l'audio"
     },
+    "205": {
+      "complexity": "Advanced",
+      "description": "As web developers, we try to make our websites as beautiful and understandable as possible for our users. We use images for decorations, to visualize topics, to illustrate stories, or show our newest products. There are already billions of images on the web, getting more every day.\n\nBut what would a website look like without any images? What information would we miss?\n\nLet us look at cases where images are not visually seen and how screen reader users experience a website with images.\n\nThis talk explains how to make images more accessible and is a deep dive into the alternative text and more advanced topics like static maps, decorations, and diagrams. Different contexts, meanings, and types of images need different approaches to provide the best experience for users.",
+      "language": "English",
+      "speakers": ["sabrina_jodexnis"],
+      "tags": ["Accessibility", "Inclusion", "Web"],
+      "title": "A picture says less than a thousand words"
+    },
     "301": {
       "complexity": "Intermediate",
       "description": "Astro è un nuovissimo framework front-end per lo sviluppo di siti web ultra performanti. Introduce moltissime novità rispetto ai principali competitor tra le quali la possibilità di creare siti web velocissimi con zero javascript e il concetto di \"island\", ovvero la possibilità di includere in una pagina componenti realizzati con tecnologie differenti (React, Svelte, Vue, ecc.) con la possibilità di idratare il codice JS assegnando differenti priorità.\n\nMe le novità non sono solo queste... le altre le scopriremo durante questa sessione.",
@@ -662,6 +693,14 @@
       "tags": ["Web"],
       "title": "Come abbiamo reinventato ambienti di QA con Kubernetes e Elixir"
     },
+    "309": {
+      "complexity": "Intermediate",
+      "description": "Argo CD è un tool di continous delivery per Kubernetes e può essere utilizzato all'interno di un pattern di GitOps. \n\nLe definizioni delle applicazioni, le configurazioni e gli ambienti devono essere dichiarativi e controllati dalla versione. La distribuzione delle applicazioni e la gestione del ciclo di vita devono essere automatizzate, verificabili e di facile comprensione.\n\nArgo CD segue il modello GitOps utilizzando i repository Git per definire lo stato dell'applicazione.\n\nI manifest di Kubernetes possono essere specificati in diversi modi:\n- kustomize\n- charts Helm\n- jsonnet file\n\nDurante il talk spiegheremo come installarlo, utilizzarlo e alcuni esempi di utilizzo. ",
+      "language": "Italian",
+      "speakers": ["gianni_forlastro", "francesco_pirrone"],
+      "tags": ["Cloud", "DevOps", "GitOps"],
+      "title": "Deploy di applicazioni con Argo CD"
+    },
     "401": {
       "complexity": "Introductory and overview",
       "description": "ARCore is the Android SDK for providing Augmented Reality experiences to our users. In the last 2 years Google seems to not put so much effort in it development, but at the last Google IO they showed new shining features and performance improvements thanks to ML usage. The most important one is the possibility to create georeferenced AR experiences without moving from our desk. In this session we will see these updates using ARFoundation, the Unity3D SDK that wraps ARCore and ARkit (for iOS).",
@@ -682,17 +721,33 @@
       "complexity": "Introductory and overview",
       "description": "🥳 #DjangoGirls arriva a Pescara! 👩🏻‍💻Ti piacerebbe imparare a costruire siti web ma non sai da che parte iniziare? Oppure sviluppi già ma vuoi conoscere altri linguaggi di programmazione? Django Girls Pescara è un workshop gratuito per insegnare alle donne - e a chiunque voglia partecipare - come costruire un sito con Django e Python partendo dalle basi.\n\n📆 Unisciti a noi il 19 Novembre 2022 a Pescara, in occasione della conferenza internazionale - #DevFestPescara22 (organizzata da GDG Pescara) - presso l’Aurum. Imparerai di più sulla programmazione, incontrerai altre persone motivate come te e potrai costruire il tuo blog personale. Questo workshop è rivolto alle principianti e non ma se fai parte delle prime non occorre che tu sappia nulla di programmazione. Per poter partecipare devi solo portare il tuo computer.\n\nIl workshop è gratuito e le donne provenienti da qualsiasi background sono invitate a partecipare. Non sarai lasciata da sola, ma assegnata ad un piccolo gruppo e coordinata da un/una coach, così da apprendere secondo il tuo ritmo.Siamo trans-inclusive e incoraggiamo la partecipazione di tutte le donne. La nostra iniziativa fa parte del progetto internazionale Django Girls che ha l'obiettivo di avvicinare più donne alla programmazione e abbattere il divario di genere nel settore tech. Per questo, la priorità nella selezione delle persone che parteciperanno al workshop verrà data a donne e ragazze.\n\nPer scoprire il programma dell'evento puoi consultare il nostro sito web 👉 https://djangogirls.org/en/pescara/\nL'evento è gratuito ma è necessario iscriversi tramite questo form:\n👉 https://djangogirls.org/en/pescara/apply/\n\nSe hai domande o richieste non esitare a contattarci.\n\nTi aspettiamo 😎👩‍💻",
       "language": "Italian",
-      "speakers": ["paolo_melchiorre", "juna_salviati", "luca_divita"],
+      "speakers": ["paolo_melchiorre", "juna_salviati", "luca_divita", "moreno_mazzocchetti", "davide_ria", "alessandro_cavacini"],
       "tags": ["Sustainability", "Django", "Python"],
       "title": "Django Girls"
     },
     "802": {
       "complexity": "Introductory and overview",
-      "description": "Il workshop mostrerà le fasi principali dello sviluppo di un videogioco in modo semplice e con esempi pratici. Attraverso una game jam verrà illustrato il lavoro del Game 3d Artist, che si occupa della parte visiva elaborando personaggi, ambienti, armi, veicoli e di gestirli con Unreal Engine, e del Game Programmer, che ha la responsabilità di integrare il lavoro del team e implementare l'architettura di gioco progettata all'interno di un game engine.",
+      "description": "Il workshop mostrerà le fasi principali dello sviluppo di un videogioco in modo semplice e con esempi pratici. Attraverso una game jam verrà illustrato il lavoro del Game 3d Artist, che si occupa della parte visiva elaborando personaggi, ambienti, armi, veicoli e di gestirli con Unreal Engine, e del Game Programmer, che ha la responsabilità di integrare il lavoro del team e implementare l'architettura di gioco progettata all'interno di un game engine.\n\nPer partecipare al Workshop è richiesta prenotazione tramite il seguente link: https://forms.gle/Kbt5UQn4pRpoyvL77",
       "language": "Italian",
       "speakers": ["emiliano_colantoni", "francesco_colarossi"],
       "tags": ["Metaverse", "Game", "3D"],
       "title": "Come si sviluppa un videogame?"
+    },
+    "803": {
+      "complexity": "Introductory and overview",
+      "description": "In this talk I'll show how moving all our build logic to Gradle helped the Package Search team at JetBrains improve our devops cycles. We wrote tons of custom logic in Gradle, and I will share how much more accessible Gradle is when using Kotlin, instead of Groovy, to write build scripts and plugins. I'll share my experience in writing build logic using the Gradle Kotlin DSL, and then walk you through the creation of a simple plugin that allows you to control a local Docker instance. Build and run Docker images with ease!",
+      "language": "Italian",
+      "speakers": ["lamberto_basti"],
+      "tags": ["Kotlin"],
+      "title": "Bash is evil, write a Gradle Plugin with Kotlin instead! PART 1"
+    },
+    "804": {
+      "complexity": "Introductory and overview",
+      "description": "In this talk I'll show how moving all our build logic to Gradle helped the Package Search team at JetBrains improve our devops cycles. We wrote tons of custom logic in Gradle, and I will share how much more accessible Gradle is when using Kotlin, instead of Groovy, to write build scripts and plugins. I'll share my experience in writing build logic using the Gradle Kotlin DSL, and then walk you through the creation of a simple plugin that allows you to control a local Docker instance. Build and run Docker images with ease!",
+      "language": "Italian",
+      "speakers": ["lamberto_basti"],
+      "tags": ["Kotlin"],
+      "title": "Bash is evil, write a Gradle Plugin with Kotlin instead! PART 2"
     },
     "901": {
       "complexity": "Beginner",
@@ -770,7 +825,7 @@
     },
     "908": {
       "complexity": "Introductory and overview",
-      "description": "To Be Announced",
+      "description": "Fun, Speechless, Team building, Food and more!",
       "language": "Italian",
       "speakers": [],
       "tags": [
@@ -778,6 +833,17 @@
       ],
       "icon": "party",
       "title": "Community Dinner"
+    },
+    "909": {
+      "complexity": "Introductory and overview",
+      "description": "Event closing, greetings, photos, gadget and...see you next year!",
+      "language": "Italian",
+      "speakers": [],
+      "tags": [
+        "Closing"
+      ],
+      "icon": "closing",
+      "title": "Event closing"
     }
   },
   "speakers": {
@@ -1540,7 +1606,7 @@
     "francesco_colarossi": {
       "name": "Francesco Colarossi",
       "shortBio": "Docente di Game Programming",
-      "bio": " Esperto in programmazione procedurale, linguaggio C, Programmazione orientata agli oggetti, linguaggio java, Unity Engine, linguaggio C#, Unreal Engine, linguaggio C++, docente di Game Programming presso Event Horizon School e Scuola Internazionale di Comics",
+      "bio": "Esperto in programmazione procedurale, linguaggio C, Programmazione orientata agli oggetti, linguaggio java, Unity Engine, linguaggio C#, Unreal Engine, linguaggio C++, docente di Game Programming presso Event Horizon School e Scuola Internazionale di Comics",
       "country": "Italy",
       "featured": false,
       "pronouns": "he/him",
@@ -1551,6 +1617,158 @@
       "photo": "/images/people/colarossi.jpeg",
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/devfestpescara2022.appspot.com/o/speakers%2Fcolarossi.jpeg?alt=media&token=de7c75bd-a0c6-4848-8f84-bde3b6d55f30",
       "title": "Docente di Game Programming"
+    },
+    "moreno_mazzocchetti": {
+      "name": "Moreno Mazzocchetti",
+      "shortBio": "Appassionato di tecnologia in generale, lavoro nello sviluppo web (e non solo) da oltre 10 anni, utilizzando prevelantemente Django e Python.",
+      "bio": "Appassionato di tecnologia in generale, lavoro nello sviluppo web (e non solo) da oltre 10 anni, utilizzando prevelantemente Django e Python.",
+      "country": "Italy",
+      "featured": false,
+      "pronouns": "he/him",
+      "company": "",
+      "order": 0,
+      "companyLogo": "",
+      "companyLogoUrl": "",
+      "photo": "/images/people/mazzocchetti.jpg",
+      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/devfestpescara2022.appspot.com/o/speakers%2Fmazzocchetti.jpg?alt=media&token=fbea1ff1-6c25-4329-af7d-9899534f363a",
+      "title": "Web Developer, Django Developer"
+    },
+    "davide_ria": {
+      "name": "Davide Ria",
+      "shortBio": "Back-End Developer/DevOps Initiate",
+      "bio": "Back-End Developer/DevOps Initiate",
+      "country": "Italy",
+      "featured": false,
+      "pronouns": "he/him",
+      "company": "",
+      "order": 0,
+      "companyLogo": "",
+      "companyLogoUrl": "",
+      "photo": "/images/people/ria.jpg",
+      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/devfestpescara2022.appspot.com/o/speakers%2Fria.jpg?alt=media&token=2b1e86f6-a29d-4e70-af05-a56520de69fe",
+      "title": "Back-End Developer/DevOps Initiate"
+    },
+    "alessandro_cavacini": {
+      "name": "Alessandro Cavacini",
+      "shortBio": "Back-End Developer, AWS, Python",
+      "bio": "Programmatore python per lavoro e per passione.\n\nLa testa tra il cloud AWS.\n\nPochi social, ma tanti amici.\n\nOpensource does it better.",
+      "country": "Italy",
+      "featured": false,
+      "pronouns": "he/him",
+      "company": "Aesys",
+      "order": 0,
+      "companyLogo": "/images/logos/aesys.png",
+      "companyLogoUrl": "https://firebasestorage.googleapis.com/v0/b/devfestpescara2022.appspot.com/o/companies%2Faesys.png?alt=media&token=c9d594bc-964d-428c-bc24-8103fa8b5aac",
+      "photo": "/images/people/cavacini.jpg",
+      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/devfestpescara2022.appspot.com/o/speakers%2Fcavacini.jpg?alt=media&token=8ac2aede-18eb-4b98-a61a-3454fb2854c8",
+      "title": "Back-End Developer, AWS, Python"
+    },
+    "sabrina_jodexnis": {
+      "name": "Sabrina Jodexnis",
+      "shortBio": "Software Engineer FrontEnd",
+      "bio": "Sabrina is a Software Engineer Frontend at Ubilabs, focusing on Maps applications and Accessibility. Her big dream is for every web and mobile application to be accessible one day. She is also the Co-Founder of the Social Developers Club, where she organizes meet-ups, workshops, and conferences.",
+      "country": "Germany",
+      "featured": false,
+      "pronouns": "she/her",
+      "company": "Ubilabs",
+      "order": 0,
+      "socials": [
+        {
+          "icon": "twitter",
+          "link": "https://twitter.com/binicodes",
+          "name": "Twitter"
+        },
+        {
+          "icon": "linkedin",
+          "link": "https://www.linkedin.com/in/sabrina-jodexnis/",
+          "name": "LinkedIn"
+        },
+        {
+          "icon": "website",
+          "link": "https://medium.com/@binicodes",
+          "name": "Website"
+        }
+      ],
+      "badges": [
+        {
+          "description": "Google Developers Experts - Web Technologies",
+          "link": "https://developers.google.com/community/experts/directory/profile/profile-sabrina-jodexnis",
+          "name": "gde"
+        }
+      ],
+      "companyLogo": "/images/logos/ubilabs.png",
+      "companyLogoUrl": "https://firebasestorage.googleapis.com/v0/b/devfestpescara2022.appspot.com/o/companies%2Fubilabs.png?alt=media&token=6685f70a-36a2-4244-a0c9-5846ed1bd3f3",
+      "photo": "/images/people/jodexnis.jpeg",
+      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/devfestpescara2022.appspot.com/o/speakers%2Fjodexnis.jpeg?alt=media&token=3ede4a8c-10da-4c6a-a727-ca738d592eab",
+      "title": "Software Engineer FrontEnd"
+    },
+    "gianni_forlastro": {
+      "name": "Gianni Forlastro",
+      "shortBio": "CTO - Teacher - GDGC Torino",
+      "bio": "Inizia la sua avventura nell'informatica con il suo primo Intel 80386 per poi laurearsi in Informatica presso l'Università degli Studi di Torino. \n\nProsegue la sua formazione con due master, uno in \"Comunicazione Digitale, Web Marketing e Social Media Management\" e il secondo in \"Cloud Computing\". \n\nCTO della divisione \"Securities & Funds\" di Finwave e docente, è co-organizzatore di eventi internazionali come droidcon italy, swift heroes e flutter heroes, fin dalle loro prime edizioni. \n\nNel 2018 apre il Google Developer Group Cloud a Torino, dove con entusiasmo organizza sessioni, meetup e workshop in ambito cloud. \n\nNel tempo libero è content creator su Instagram per tutto ciò che riguarda il mondo ludico, con il nickname mosquitoman81.",
+      "country": "Italy",
+      "featured": false,
+      "pronouns": "he/him",
+      "company": "",
+      "order": 0,
+      "socials": [
+        {
+          "icon": "twitter",
+          "link": "https://twitter.com/mosquitoman81",
+          "name": "Twitter"
+        },
+        {
+          "icon": "linkedin",
+          "link": "https://www.linkedin.com/in/giovanni-forlastro/",
+          "name": "LinkedIn"
+        },
+        {
+          "icon": "instagram",
+          "link": "https://www.instagram.com/mosquitoman81/",
+          "name": "Instagram"
+        }
+      ],
+      "badges": [
+        {
+          "description": "Google Developers Group Cloud Torino",
+          "link": "https://gdg.community.dev/gdg-cloud-torino/",
+          "name": "gdg"
+        }
+      ],
+      "companyLogo": "",
+      "companyLogoUrl": "",
+      "photo": "/images/people/forlastro.png",
+      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/devfestpescara2022.appspot.com/o/speakers%2Fforlastro.png?alt=media&token=be977cc1-c32c-4f51-91e1-6a0afe668ff1",
+      "title": "CTO - Teacher - GDGC Torino"
+    },
+    "francesco_pirrone": {
+      "name": "Francesco Pirrone",
+      "shortBio": "Fullstack Developer - GDGC Torino",
+      "bio": "Laureato in Informatica presso l'Università degli Studi di Torino è fullstack developer presso Finwave del gruppo Lutech, dove si occupa della progettazione e sviluppo di sistemi distributi.\n\nNerd al 99% cerca di mantenere il contatto con il mondo reale per l'1% della sua giornata.\n\nDal 2018 è Community Leader del GDG Cloud Torino.",
+      "country": "Italy",
+      "featured": false,
+      "pronouns": "he/him",
+      "company": "",
+      "order": 0,
+      "socials": [
+        {
+          "icon": "twitter",
+          "link": "https://twitter.com/cfrancescop",
+          "name": "Twitter"
+        }
+      ],
+      "badges": [
+        {
+          "description": "Google Developers Group Cloud Torino",
+          "link": "https://gdg.community.dev/gdg-cloud-torino/",
+          "name": "gdg"
+        }
+      ],
+      "companyLogo": "",
+      "companyLogoUrl": "",
+      "photo": "/images/people/pirrone.png",
+      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/devfestpescara2022.appspot.com/o/speakers%2Fpirrone.png?alt=media&token=4792a94e-6c2e-474e-a801-979b9ce695c9",
+      "title": "Fullstack Developer - GDGC Torino"
     }
   },
   "team": [

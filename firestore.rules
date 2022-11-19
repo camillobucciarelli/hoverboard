@@ -29,6 +29,10 @@ service cloud.firestore {
       allow write: if request.auth.uid == userId;
     }
 
+    match /games/{userId}/history/{eventId} {
+      allow write, list, get: if request.auth.token.role == "ORGANIZER";
+    }
+
     match /config/{config} {
       allow read, write: if false; // allow each section separately
     }
