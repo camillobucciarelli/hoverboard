@@ -7,6 +7,6 @@ export const updateScore = functions.firestore
   .document('games/{playerId}/history/{historyId}')
   .onWrite(async (change, context) => {
     const docs = await getFirestore().collection('games').doc(context.params.playerId).collection('history').get();
-    const score = docs.docs.reduce((acc, doc) => acc + doc.data().score, 0);
+    const score = docs.docs.reduce((acc, doc) => acc + doc.data().points, 0);
     return getFirestore().collection('games').doc(context.params.playerId).update({ score: score });
   });

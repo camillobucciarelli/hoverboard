@@ -93,7 +93,7 @@ export const scheduleTwitterScanner = functions.pubsub
                   await getFirestore().collection('games').doc(user.id).collection('history').add({
                     insert_on: Timestamp.now(),
                     type: 'TWITTER',
-                    score: configurations.points,
+                    points: configurations.points,
                     id: tweet.id,
                     data: tweet
                   });

@@ -20,10 +20,10 @@ interface InstagramResponse {
   "data": Post[],
 }
 
-// export const scheduleInstagramScanner = functions.https.onRequest(async (req, res) => {
-export const scheduleInstagramScanner = functions.pubsub
-  .schedule('every 5 minutes')
-  .onRun(async () => {
+export const scheduleInstagramScanner = functions.https.onRequest(async (req, res) => {
+// export const scheduleInstagramScanner = functions.pubsub
+//   .schedule('every 5 minutes')
+//   .onRun(async () => {
   const configurations: InstagramConfiguration = (await getFirestore()
     .collection('config')
     .doc('socialSearch')
@@ -66,13 +66,16 @@ export const instagramObserver = functions.firestore
       .collection('posts')
       .doc(context.params.postId)
       .get()).data() as Post;
+    console.log('Handle post ', instagramPost);
     const config = {
       method: 'get',
-      url: `${instagramPost.permalink}?__a=1&__d=dis`,
+      url: `${instagramPost.permalink}`,
     };
     axios(config).then(async (response) => {
       console.log(`handling post ${response.config.url}`);
-      const postUser = response.data.graphql.shortcode_media.owner.username;
+      const list = response.data.match(/(?<=&#064;)(.*?)(?=\))/)[0].split(";");
+      const postUser = list[list.length - 1];
+      console.log('post user ', postUser);
       const usersInGame = (await getFirestore()
         .collection('games')
         .where('instagram', 'in', [postUser])
@@ -89,7 +92,7 @@ export const instagramObserver = functions.firestore
           await getFirestore().collection('games').doc(userInGame.id).collection('history').add({
             insert_on: Timestamp.now(),
             type: 'INSTAGRAM',
-            score: configurations.points,
+            points: configurations.points,
             id: instagramPost.id,
             data: instagramPost
           });
