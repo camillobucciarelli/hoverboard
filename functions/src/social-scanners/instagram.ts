@@ -20,10 +20,10 @@ interface InstagramResponse {
   "data": Post[],
 }
 
-export const scheduleInstagramScanner = functions.https.onRequest(async (req, res) => {
-// export const scheduleInstagramScanner = functions.pubsub
-//   .schedule('every 5 minutes')
-//   .onRun(async () => {
+// export const scheduleInstagramScanner = functions.https.onRequest(async (req, res) => {
+export const scheduleInstagramScanner = functions.pubsub
+  .schedule('every 5 minutes')
+  .onRun(async () => {
   const configurations: InstagramConfiguration = (await getFirestore()
     .collection('config')
     .doc('socialSearch')
