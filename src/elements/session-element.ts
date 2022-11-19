@@ -3,6 +3,7 @@ import { computed, customElement, property } from '@polymer/decorators';
 import '@polymer/iron-icon';
 import { html, PolymerElement } from '@polymer/polymer';
 import '@power-elements/lazy-image';
+import '../components/markdown/short-markdown';
 import '../components/text-truncate';
 import { Session } from '../models/session';
 import { router } from '../router';
@@ -172,7 +173,9 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
           <div flex>
             <h3 class="session-title">[[session.title]]</h3>
             <text-truncate lines="3">
-              <div class="session-description">[[summary]]</div>
+              <div class="session-description">
+                <short-markdown class="description" content="[[summary]]"></short-markdown>
+              </div>
             </text-truncate>
           </div>
           <span class="language">[[slice(session.language, 2)]]</span>
